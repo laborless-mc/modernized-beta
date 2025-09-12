@@ -74,9 +74,9 @@ public class BlockStairs extends Block {
 		this.modelBlock.onBlockClicked(world1, i2, i3, i4, entityPlayer5);
 	}
 
-	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {
-		this.modelBlock.onBlockDestroyedByPlayer(world1, i2, i3, i4, i5);
-	}
+//	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {
+//		this.modelBlock.onBlockDestroyedByPlayer(world1, i2, i3, i4, i5);
+//	}
 
 	public float getBlockBrightness(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		return this.modelBlock.getBlockBrightness(iBlockAccess1, i2, i3, i4);
@@ -91,7 +91,7 @@ public class BlockStairs extends Block {
 	}
 
 	public int idDropped(int i1, Random random2) {
-		return this.modelBlock.idDropped(i1, random2);
+		return this.blockID;
 	}
 
 	public int quantityDropped(Random random1) {
@@ -139,13 +139,13 @@ public class BlockStairs extends Block {
 		this.modelBlock.onBlockAdded(world1, i2, i3, i4);
 	}
 
-	public void onBlockRemoval(World world1, int i2, int i3, int i4) {
-		this.modelBlock.onBlockRemoval(world1, i2, i3, i4);
-	}
-
-	public void dropBlockAsItemWithChance(World world1, int i2, int i3, int i4, int i5, float f6) {
-		this.modelBlock.dropBlockAsItemWithChance(world1, i2, i3, i4, i5, f6);
-	}
+//	public void onBlockRemoval(World world1, int i2, int i3, int i4) {
+//		this.modelBlock.onBlockRemoval(world1, i2, i3, i4);
+//	}
+//
+//	public void dropBlockAsItemWithChance(World world1, int i2, int i3, int i4, int i5, float f6) {
+//		this.modelBlock.dropBlockAsItemWithChance(world1, i2, i3, i4, i5, f6);
+//	}
 
 	public void onEntityWalking(World world1, int i2, int i3, int i4, Entity entity5) {
 		this.modelBlock.onEntityWalking(world1, i2, i3, i4, entity5);
@@ -159,9 +159,9 @@ public class BlockStairs extends Block {
 		return this.modelBlock.blockActivated(world1, i2, i3, i4, entityPlayer5);
 	}
 
-	public void onBlockDestroyedByExplosion(World world1, int i2, int i3, int i4) {
-		this.modelBlock.onBlockDestroyedByExplosion(world1, i2, i3, i4);
-	}
+//	public void onBlockDestroyedByExplosion(World world1, int i2, int i3, int i4) {
+//		this.modelBlock.onBlockDestroyedByExplosion(world1, i2, i3, i4);
+//	}
 
 	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
 		int i6 = MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
