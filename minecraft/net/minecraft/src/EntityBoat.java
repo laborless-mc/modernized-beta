@@ -71,14 +71,16 @@ public class EntityBoat extends Entity {
 					this.riddenByEntity.mountEntity(this);
 				}
 
-				int i3;
-				for(i3 = 0; i3 < 3; ++i3) {
-					this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
-				}
+//				int i3;
+//				for(i3 = 0; i3 < 3; ++i3) {
+//					this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
+//				}
+//
+//				for(i3 = 0; i3 < 2; ++i3) {
+//					this.dropItemWithOffset(Item.stick.shiftedIndex, 1, 0.0F);
+//				}
 
-				for(i3 = 0; i3 < 2; ++i3) {
-					this.dropItemWithOffset(Item.stick.shiftedIndex, 1, 0.0F);
-				}
+				this.dropItemWithOffset(Item.boat.shiftedIndex, 1, 0.0F);
 
 				this.setEntityDead();
 			}
@@ -243,24 +245,24 @@ public class EntityBoat extends Entity {
 				}
 			}
 
-			if(this.isCollidedHorizontally && d6 > 0.15D) {
-				if(!this.worldObj.multiplayerWorld) {
-					this.setEntityDead();
-
-					int i22;
-					for(i22 = 0; i22 < 3; ++i22) {
-						this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
-					}
-
-					for(i22 = 0; i22 < 2; ++i22) {
-						this.dropItemWithOffset(Item.stick.shiftedIndex, 1, 0.0F);
-					}
-				}
-			} else {
+//			if(this.isCollidedHorizontally && d6 > 0.15D) {
+//				if(!this.worldObj.multiplayerWorld) {
+//					this.setEntityDead();
+//
+//					int i22;
+//					for(i22 = 0; i22 < 3; ++i22) {
+//						this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
+//					}
+//
+//					for(i22 = 0; i22 < 2; ++i22) {
+//						this.dropItemWithOffset(Item.stick.shiftedIndex, 1, 0.0F);
+//					}
+//				}
+//			} else {
 				this.motionX *= (double)0.99F;
 				this.motionY *= (double)0.95F;
 				this.motionZ *= (double)0.99F;
-			}
+//			}
 
 			this.rotationPitch = 0.0F;
 			d8 = (double)this.rotationYaw;
@@ -339,6 +341,10 @@ public class EntityBoat extends Entity {
 		} else {
 			if(!this.worldObj.multiplayerWorld) {
 				entityPlayer1.mountEntity(this);
+
+				if(entityPlayer1.ridingEntity == null) {
+					entityPlayer1.setPosition(entityPlayer1.posX, entityPlayer1.posY+0.01f, entityPlayer1.posZ);
+				}
 			}
 
 			return true;
