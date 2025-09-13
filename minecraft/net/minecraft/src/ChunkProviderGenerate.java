@@ -344,7 +344,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			(new WorldGenDungeons()).generate(this.worldObj, this.rand, i14, i15, i16);
 		}
 
-		for(i13 = 0; i13 < 10; ++i13) {
+		for(i13 = 0; i13 < 30; ++i13) {
 			i14 = i4 + this.rand.nextInt(16);
 			i15 = this.rand.nextInt(128);
 			i16 = i5 + this.rand.nextInt(16);
