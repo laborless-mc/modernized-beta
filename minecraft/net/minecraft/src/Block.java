@@ -123,6 +123,9 @@ public class Block {
 	protected float blockResistance;
 	protected boolean blockConstructorCalled;
 	protected boolean enableStats;
+	protected boolean silked;
+	protected boolean fortuned;
+	protected boolean smelted;
 	public double minX;
 	public double minY;
 	public double minZ;
@@ -284,6 +287,9 @@ public class Block {
 	}
 
 	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+	}
+
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
 	}
 
 	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {

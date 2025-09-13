@@ -25,7 +25,7 @@ public class PlayerController {
 		int i7 = world5.getBlockMetadata(i1, i2, i3);
 		boolean z8 = world5.setBlockWithNotify(i1, i2, i3, 0);
 		if(block6 != null && z8) {
-			block6.onBlockDestroyedByPlayer(world5, i1, i2, i3, i7);
+			block6.onBlockDestroyedByPlayer(this.mc.thePlayer, world5, i1, i2, i3, i7);
 		}
 
 		return z8;

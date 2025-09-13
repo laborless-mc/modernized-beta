@@ -83,4 +83,34 @@ public class BlockCactus extends Block {
 	public void onEntityCollidedWithBlock(World world1, int i2, int i3, int i4, Entity entity5) {
 		entity5.attackEntityFrom((Entity)null, 1);
 	}
+
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
+		if(entityPlayer.getCurrentEquippedItem() == null) {
+			silked = false;
+			fortuned = false;
+			smelted = false;
+			return;
+		}
+
+		this.smelted = entityPlayer.getCurrentEquippedItem().itemID == Item.axeMolten.shiftedIndex;
+	}
+
+	public int idDropped(int i1, Random random2) {
+		return Block.cactus.blockID;
+	}
+
+	public int quantityDropped(Random random1) {
+		if(smelted) { return 0; }
+		return 1;
+	}
+
+	public void harvestBlock(World world1, EntityPlayer entityPlayer2, int i3, int i4, int i5, int i6) {
+		entityPlayer2.addStat(StatList.mineBlockStatArray[this.blockID], 1);
+		if(smelted) {
+			this.dropBlockAsItem_do(world1, i3, i4, i5, new ItemStack(Item.dyePowder, 1, 2));
+		}
+		else {
+			this.dropBlockAsItem(world1, i3, i4, i5, i6);
+		}
+	}
 }

@@ -109,6 +109,9 @@ public class Item {
 	public static Item cookie = (new ItemCookie(101, 1, false, 8)).setIconCoord(12, 5).setItemName("cookie");
 	public static ItemMap mapItem = (ItemMap)(new ItemMap(102)).setIconCoord(12, 3).setItemName("map");
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
+	public static Item pickaxeMolten = (new ItemPickaxe(104, EnumToolMaterial.IRON)).setIconCoord(5, 7).setItemName("pickaxeMolten");
+	public static Item axeMolten = (new ItemAxe(105, EnumToolMaterial.IRON)).setIconCoord(5, 8).setItemName("axeMolten");
+	public static Item shovelMolten = (new ItemSpade(106, EnumToolMaterial.IRON)).setIconCoord(5, 6).setItemName("shovelMolten");
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
 	public final int shiftedIndex;

@@ -38,7 +38,7 @@ public class BlockTNT extends Block {
 		world1.entityJoinedWorld(entityTNTPrimed5);
 	}
 
-	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
 		if(!world1.multiplayerWorld) {
 			if((i5 & 1) == 0) {
 				this.dropBlockAsItem_do(world1, i2, i3, i4, new ItemStack(Block.tnt.blockID, 1, 0));

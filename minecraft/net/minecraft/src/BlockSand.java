@@ -57,4 +57,20 @@ public class BlockSand extends Block {
 			return material5 == Material.water ? true : material5 == Material.lava;
 		}
 	}
+
+	public int idDropped(int i1, Random random2) {
+		if(smelted) { return Block.glass.blockID; }
+		return this.blockID;
+	}
+
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
+		if(entityPlayer.getCurrentEquippedItem() == null) {
+			silked = false;
+			fortuned = false;
+			smelted = false;
+			return;
+		}
+
+		this.smelted = entityPlayer.getCurrentEquippedItem().itemID == Item.shovelMolten.shiftedIndex;
+	}
 }

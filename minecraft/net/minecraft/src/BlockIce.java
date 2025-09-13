@@ -27,6 +27,7 @@ public class BlockIce extends BlockBreakable {
 	}
 
 	public int quantityDropped(Random random1) {
+		if(silked) { return 1; }
 		return 0;
 	}
 
@@ -40,5 +41,16 @@ public class BlockIce extends BlockBreakable {
 
 	public int getMobilityFlag() {
 		return 0;
+	}
+
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
+		if(entityPlayer.getCurrentEquippedItem() == null) {
+			silked = false;
+			fortuned = false;
+			smelted = false;
+			return;
+		}
+
+		this.silked = entityPlayer.getCurrentEquippedItem().itemID == Item.pickaxeGold.shiftedIndex;
 	}
 }

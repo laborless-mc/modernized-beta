@@ -9,10 +9,12 @@ public class BlockLog extends Block {
 	}
 
 	public int quantityDropped(Random random1) {
+		if(fortuned) { return random1.nextBoolean() ? 2 : 1; }
 		return 1;
 	}
 
 	public int idDropped(int i1, Random random2) {
+		if(smelted) { return Item.coal.shiftedIndex; }
 		return Block.wood.blockID;
 	}
 
@@ -47,5 +49,17 @@ public class BlockLog extends Block {
 
 	protected int damageDropped(int i1) {
 		return i1;
+	}
+
+	public void onBlockDestroyedByPlayer(EntityPlayer entityPlayer, World world1, int i2, int i3, int i4, int i5) {
+		if(entityPlayer.getCurrentEquippedItem() == null) {
+			silked = false;
+			fortuned = false;
+			smelted = false;
+			return;
+		}
+
+		this.fortuned = entityPlayer.getCurrentEquippedItem().itemID == Item.axeStone.shiftedIndex;
+		this.smelted = entityPlayer.getCurrentEquippedItem().itemID == Item.axeMolten.shiftedIndex;
 	}
 }
