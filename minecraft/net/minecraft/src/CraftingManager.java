@@ -81,6 +81,8 @@ public class CraftingManager {
 		this.addShapelessRecipe(new ItemStack(Item.pickaxeMolten, 1), new Object[]{new ItemStack(Item.pickaxeSteel, 1), new ItemStack(Item.bucketLava, 1)});
 		this.addShapelessRecipe(new ItemStack(Item.axeMolten, 1), new Object[]{new ItemStack(Item.axeSteel, 1), new ItemStack(Item.bucketLava, 1)});
 		this.addShapelessRecipe(new ItemStack(Item.shovelMolten, 1), new Object[]{new ItemStack(Item.shovelSteel, 1), new ItemStack(Item.bucketLava, 1)});
+		this.addRecipe(new ItemStack(Block.netherBrick, 4), new Object[]{"##", "##", '#', Block.netherrack});
+		this.addRecipe(new ItemStack(Block.stoneBrick, 4), new Object[]{"##", "##", '#', Block.stone});
 		Collections.sort(this.recipes, new RecipeSorter(this));
 		System.out.println(this.recipes.size() + " recipes");
 	}

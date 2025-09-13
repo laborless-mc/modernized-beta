@@ -52,6 +52,7 @@ public class EntityRenderer {
 	float fogColorBlue;
 	private float fogColor2;
 	private float fogColor1;
+	private WorldProvider worldProvider = null;
 
 	public EntityRenderer(Minecraft minecraft1) {
 		this.mc = minecraft1;
