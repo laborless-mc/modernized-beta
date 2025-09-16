@@ -1,8 +1,11 @@
 package net.minecraft.src;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class GuiContainer extends GuiScreen {
 	private static RenderItem itemRenderer = new RenderItem();
@@ -121,6 +124,33 @@ public abstract class GuiContainer extends GuiScreen {
 		i2 -= i4;
 		i3 -= i5;
 		return i2 >= slot1.xDisplayPosition - 1 && i2 < slot1.xDisplayPosition + 16 + 1 && i3 >= slot1.yDisplayPosition - 1 && i3 < slot1.yDisplayPosition + 16 + 1;
+	}
+
+	private int getRequiredMouseX() {
+		ScaledResolution scaledResolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+		return (Mouse.getX() * scaledResolution.getScaledWidth()) / mc.displayWidth;
+	}
+
+	private int getRequiredMouseY() {
+		ScaledResolution scaledResolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+		int scaledHeight = scaledResolution.getScaledHeight();
+		return scaledHeight - ((Mouse.getY() * scaledHeight) / mc.displayHeight) - 1;
+	}
+
+	public Slot getSlotUnderMouse() {
+		try {
+			return (Slot)this.getSlotAtPosition(getRequiredMouseX(), getRequiredMouseY());
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public void clickSlot(Slot slot, MouseButton mouseButton, boolean shiftPressed) {
+		mc.playerController.func_27174_a(this.inventorySlots.windowId,
+				slot.slotNumber,
+				mouseButton.getValue(),
+				shiftPressed,
+				mc.thePlayer);
 	}
 
 	protected void mouseClicked(int i1, int i2, int i3) {
