@@ -21,7 +21,8 @@ public class BlockCrops extends BlockFlower {
 			int i6 = world1.getBlockMetadata(i2, i3, i4);
 			if(i6 < 7) {
 				float f7 = this.getGrowthRate(world1, i2, i3, i4);
-				if(random5.nextInt((int)(100.0F / f7)) == 0) {
+				int bound = Math.max(1, (int)(20.0F / f7));
+				if(random5.nextInt(bound) == 0) {
 					++i6;
 					world1.setBlockMetadataWithNotify(i2, i3, i4, i6);
 				}
@@ -110,5 +111,25 @@ public class BlockCrops extends BlockFlower {
 
 	public int quantityDropped(Random random1) {
 		return 1;
+	}
+
+	public boolean blockActivated(World world1, int i2, int i3, int i4, EntityPlayer entityPlayer5) {
+		if (world1.getBlockMetadata(i2, i3, i4) == 7) {
+//			this.dropBlockAsItem(world1, i2, i3, i4, Item.wheat.shiftedIndex);
+//
+//			if (world1.rand.nextBoolean()) {
+//				this.dropBlockAsItem(world1, i2, i3, i4, Item.seeds.shiftedIndex);
+//			}
+//			if (world1.rand.nextBoolean()) {
+//				this.dropBlockAsItem(world1, i2, i3, i4, Item.seeds.shiftedIndex);
+//			}
+
+			this.dropBlockAsItem(world1, i2, i3, i4, this.blockID);
+			this.dropBlockAsItem_do(world1, i2, i3, i4, new ItemStack(Item.wheat));
+
+			world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, 1);
+			return true;
+		}
+		return false;
 	}
 }
