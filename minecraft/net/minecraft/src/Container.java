@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public abstract class Container {
 	public List field_20123_d = new ArrayList();
@@ -48,7 +49,7 @@ public abstract class Container {
 		ItemStack itemStack5 = null;
 		if(i2 == 0 || i2 == 1) {
 			InventoryPlayer inventoryPlayer6 = entityPlayer4.inventory;
-			if(i1 == -999) {
+			if(i1 == -999) { // Clicked outside the window => drop item?
 				if(inventoryPlayer6.getItemStack() != null && i1 == -999) {
 					if(i2 == 0) {
 						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack());
@@ -64,17 +65,27 @@ public abstract class Container {
 				}
 			} else {
 				int i10;
-				if(z3) {
+				if(z3) { // Holding shift?
+//					ItemStack itemStack7 = this.getStackInSlot(i1);
+//					if(itemStack7 != null) {
+//						int i8 = itemStack7.stackSize;
+//						itemStack5 = itemStack7.copy();
+//						Slot slot9 = (Slot)this.slots.get(i1);
+//						if(slot9 != null && slot9.getStack() != null) {
+//							i10 = slot9.getStack().stackSize;
+//							if(i10 < i8) {
+//								this.func_27280_a(i1, i2, z3, entityPlayer4);
+//							}
+//						}
+//					}
+
 					ItemStack itemStack7 = this.getStackInSlot(i1);
 					if(itemStack7 != null) {
-						int i8 = itemStack7.stackSize;
+						int i8 = itemStack7.itemID;
 						itemStack5 = itemStack7.copy();
-						Slot slot9 = (Slot)this.slots.get(i1);
-						if(slot9 != null && slot9.getStack() != null) {
-							i10 = slot9.getStack().stackSize;
-							if(i10 < i8) {
-								this.func_27280_a(i1, i2, z3, entityPlayer4);
-							}
+						Slot slot9 = (Slot)this.getSlot(i1);
+						if(slot9 != null && slot9.getStack() != null && slot9.getStack().itemID == i8) {
+							this.func_27280_a(i1, i2, z3, entityPlayer4);
 						}
 					}
 				} else {
