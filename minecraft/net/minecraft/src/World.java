@@ -1734,9 +1734,9 @@ public class World implements IBlockAccess {
 		long j2;
 		if(this.isAllPlayersFullyAsleep()) {
 			boolean z1 = false;
-			if(this.spawnHostileMobs && this.difficultySetting >= 1) {
-				z1 = SpawnerAnimals.performSleepSpawning(this, this.playerEntities);
-			}
+//			if(this.spawnHostileMobs && this.difficultySetting >= 1) {
+//				z1 = SpawnerAnimals.performSleepSpawning(this, this.playerEntities);
+//			}
 
 			if(!z1) {
 				j2 = this.worldInfo.getWorldTime() + 24000L;
