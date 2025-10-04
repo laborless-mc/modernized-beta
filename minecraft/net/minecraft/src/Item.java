@@ -112,6 +112,7 @@ public class Item {
 	public static Item pickaxeMolten = (new ItemPickaxe(104, EnumToolMaterial.IRON)).setIconCoord(5, 7).setItemName("pickaxeMolten");
 	public static Item axeMolten = (new ItemAxe(105, EnumToolMaterial.IRON)).setIconCoord(5, 8).setItemName("axeMolten");
 	public static Item shovelMolten = (new ItemSpade(106, EnumToolMaterial.IRON)).setIconCoord(5, 6).setItemName("shovelMolten");
+	public static Item rawIron = (new Item(107).setIconCoord(9, 6).setItemName("rawIron"));
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
 	public final int shiftedIndex;
