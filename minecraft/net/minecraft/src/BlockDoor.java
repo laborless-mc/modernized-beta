@@ -98,16 +98,47 @@ public class BlockDoor extends Block {
 
 				return true;
 			} else {
-				if(world1.getBlockId(i2, i3 + 1, i4) == this.blockID) {
-					world1.setBlockMetadataWithNotify(i2, i3 + 1, i4, (i6 ^ 4) + 8);
+				toggleDoor(world1, i2, i3, i4, entityPlayer5);
+
+				// Check for adjacent doors
+				int[][] adjacentOffsets = {
+						{1, 0}, {-1, 0}, {0, 1}, {0, -1}
+				};
+
+				for (int[] offset : adjacentOffsets) {
+					int adjX = i2 + offset[0];
+					int adjZ = i4 + offset[1];
+					int adjY = i3;
+
+					if (world1.getBlockId(adjX, adjY, adjZ) == this.blockID) {
+						int adjMeta = world1.getBlockMetadata(adjX, adjY, adjZ);
+						if ((adjMeta & 8) == 0) {
+							if ((adjMeta & 4) != (i6 & 4)) {
+								toggleDoor(world1, adjX, adjY, adjZ, entityPlayer5);
+							}
+						}
+					}
 				}
 
-				world1.setBlockMetadataWithNotify(i2, i3, i4, i6 ^ 4);
-				world1.markBlocksDirty(i2, i3 - 1, i4, i2, i3, i4);
-				world1.func_28107_a(entityPlayer5, 1003, i2, i3, i4, 0);
 				return true;
 			}
 		}
+	}
+
+	private void toggleDoor(World world, int x, int y, int z, EntityPlayer player) {
+		int meta = world.getBlockMetadata(x, y, z);
+
+		// Toggle open bit (bit 2 = 4)
+		world.setBlockMetadataWithNotify(x, y, z, meta ^ 4);
+
+		// Update top half if exists
+		if (world.getBlockId(x, y + 1, z) == this.blockID) {
+			int topMeta = world.getBlockMetadata(x, y + 1, z);
+			world.setBlockMetadata(x, y + 1, z, (topMeta ^ 4) | 8);
+		}
+
+		world.markBlocksDirty(x, y, z, x, y, z);
+		world.func_28107_a(player, 1003, x, y, z, 0);
 	}
 
 	public void onPoweredBlockChange(World world1, int i2, int i3, int i4, boolean z5) {
