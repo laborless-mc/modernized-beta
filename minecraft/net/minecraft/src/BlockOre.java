@@ -8,12 +8,11 @@ public class BlockOre extends Block {
 	}
 
 	public int idDropped(int i1, Random random2) {
-		if(silked) {
+		if(silked) { return this.blockID; }
+		if(fortuned) {
 			if (this.blockID == Block.oreIron.blockID) {
 				return Item.rawIron.shiftedIndex;
 			}
-
-			return this.blockID;
 		}
 		if(smelted) {
 			if(this.blockID == Block.oreIron.blockID) { return Item.ingotIron.shiftedIndex; }
