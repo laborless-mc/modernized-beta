@@ -428,6 +428,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i14 += i13;
 		}
 
+		if(biomeGenBase6 == BiomeGenBase.jungle) {
+			i14 += i13 + 15;
+		}
+
 		if(biomeGenBase6 == BiomeGenBase.seasonalForest) {
 			i14 += i13 + 2;
 		}

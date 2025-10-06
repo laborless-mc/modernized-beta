@@ -113,7 +113,12 @@ public class RenderBlocks {
 		long j18 = (long)(i2 * 3129871) ^ (long)i4 * 116129781L ^ (long)i3;
 		j18 = j18 * j18 * 42317861L + j18 * 11L;
 		int i20 = (int)(j18 >> 16 & 3L);
-		//tessellator5.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
+		float f7 = block1.getBlockBrightness(this.blockAccess, i2, i3, i4);
+		if(Block.lightValue[block1.blockID] > 0) {
+			f7 = 1.0F;
+		}
+
+		tessellator5.setColorOpaque_F(f7, f7, f7);
 		float f21 = (float)i2 + 0.5F;
 		float f22 = (float)i4 + 0.5F;
 		float f23 = (float)(i20 & 1) * 0.5F * (float)(1 - i20 / 2 % 2 * 2);
@@ -138,8 +143,12 @@ public class RenderBlocks {
 			i6 = this.overrideBlockTexture;
 		}
 
-		float f7 = 1.0F;
-//		tessellator5.set(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
+		float f7 = block1.getBlockBrightness(this.blockAccess, i2, i3, i4);
+		if(Block.lightValue[block1.blockID] > 0) {
+			f7 = 1.0F;
+		}
+
+		tessellator5.setColorOpaque_F(f7, f7, f7);
 		int i8 = block1.colorMultiplier(this.blockAccess, i2, i3, i4);
 		float f9 = (float)(i8 >> 16 & 255) / 255.0F;
 		float f10 = (float)(i8 >> 8 & 255) / 255.0F;

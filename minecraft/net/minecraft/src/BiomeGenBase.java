@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class BiomeGenBase {
 	public static final String swampColor = "566b4e";
+	public static final BiomeGenBase jungle = (new BiomeGenJungle()).setColor(588342).setBiomeName("Jungle").func_4124_a(2094168);
 	public static final BiomeGenBase rainforest = (new BiomeGenRainforest()).setColor(588342).setBiomeName("Rainforest").func_4124_a(2094168);
 	public static final BiomeGenBase swampland = (new BiomeGenSwamp()).setColor(522674).setBiomeName("Swampland").func_4124_a(9154376);
 	public static final BiomeGenBase seasonalForest = (new BiomeGenBase()).setColor(10215459).setBiomeName("Seasonal Forest");
@@ -93,7 +94,7 @@ public class BiomeGenBase {
 
 	public static BiomeGenBase getBiome(float f0, float f1) {
 		f1 *= f0;
-		//if(true) { return swampland; } // for biome testing
+		//if(true) { return jungle; } // for biome testing
 
 		// cold and dry = tundra
 		if (f0 < 0.15F) return tundra;
@@ -122,7 +123,8 @@ public class BiomeGenBase {
 			else return seasonalForest;
 		}
 
-		// warm & humid = rainforest
+		// warm & humid = jungle > rainforest
+		if (f1 > 0.8F) return jungle;
 		if (f1 > 0.6F) return rainforest;
 
 		return plains;
