@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BiomeGenBase {
+	public static final String swampColor = "566b4e";
 	public static final BiomeGenBase rainforest = (new BiomeGenRainforest()).setColor(588342).setBiomeName("Rainforest").func_4124_a(2094168);
 	public static final BiomeGenBase swampland = (new BiomeGenSwamp()).setColor(522674).setBiomeName("Swampland").func_4124_a(9154376);
 	public static final BiomeGenBase seasonalForest = (new BiomeGenBase()).setColor(10215459).setBiomeName("Seasonal Forest");
@@ -92,7 +93,39 @@ public class BiomeGenBase {
 
 	public static BiomeGenBase getBiome(float f0, float f1) {
 		f1 *= f0;
-		return f0 < 0.1F ? tundra : (f1 < 0.2F ? (f0 < 0.5F ? tundra : (f0 < 0.95F ? savanna : desert)) : (f1 > 0.5F && f0 < 0.7F ? swampland : (f0 < 0.5F ? taiga : (f0 < 0.97F ? (f1 < 0.35F ? shrubland : forest) : (f1 < 0.45F ? plains : (f1 < 0.9F ? seasonalForest : rainforest))))));
+		//if(true) { return swampland; } // for biome testing
+
+		// cold and dry = tundra
+		if (f0 < 0.15F) return tundra;
+
+		// hot and dry = desert, but allow savanna
+		if (f1 < 0.2F) {
+			if (f0 < 0.3F) return tundra; // make cold-desert rare
+			else if (f0 < 0.7F) return savanna;
+			else return desert;
+		}
+
+		// more swampland than before
+		if ((f1 > 0.25F && f1 < 0.6F) && (f0 > 0.3F && f0 < 0.8F)) {
+			return swampland;
+		}
+
+		// cold = taiga
+		if (f0 < 0.4F) {
+			return taiga;
+		}
+
+		// forests in moderate temp & humidity
+		if (f0 < 0.9F) {
+			if (f1 < 0.35F) return plains;
+			else if (f1 < 0.65F) return forest;
+			else return seasonalForest;
+		}
+
+		// warm & humid = rainforest
+		if (f1 > 0.6F) return rainforest;
+
+		return plains;
 	}
 
 	public int getSkyColorByTemp(float f1) {

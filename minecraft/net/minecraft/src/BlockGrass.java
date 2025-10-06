@@ -24,6 +24,8 @@ public class BlockGrass extends Block {
 		iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
 		double d5 = iBlockAccess1.getWorldChunkManager().temperature[0];
 		double d7 = iBlockAccess1.getWorldChunkManager().humidity[0];
+//		BiomeGenBase biome = iBlockAccess1.getWorldChunkManager().getBiomeGenAt(i2, i3);
+//		if(biome == BiomeGenBase.swampland) { return Integer.parseInt(BiomeGenBase.swampColor, 16); }
 		return ColorizerGrass.getGrassColor(d5, d7);
 	}
 

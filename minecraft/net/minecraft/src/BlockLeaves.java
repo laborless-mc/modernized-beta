@@ -18,6 +18,8 @@ public class BlockLeaves extends BlockLeavesBase {
 
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		int i5 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
+//		BiomeGenBase biome = iBlockAccess1.getWorldChunkManager().getBiomeGenAt(i2, i3);
+//		if(biome == BiomeGenBase.swampland) { return Integer.parseInt(BiomeGenBase.swampColor, 16); }
 		if((i5 & 1) == 1) {
 			return ColorizerFoliage.getFoliageColorPine();
 		} else if((i5 & 2) == 2) {

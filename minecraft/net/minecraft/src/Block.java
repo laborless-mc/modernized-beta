@@ -119,6 +119,8 @@ public class Block {
 	public static final Block trapdoor = (new BlockTrapDoor(96, Material.wood)).setHardness(3.0F).setStepSound(soundWoodFootstep).setBlockName("trapdoor").disableStats().disableNeighborNotifyOnMetadataChange();
 	public static final Block netherBrick = (new Block(97, 224, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep).setBlockName("netherbrick");
 	public static final Block stoneBrick = (new Block(98, 54, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep).setBlockName("stonebrick");
+	public static final Block vine = (new BlockVine(99)).setHardness(0.2F).setStepSound(soundGrassFootstep).setBlockName("vine");
+	public static final BlockFlower plantCyan = (BlockFlower)(new BlockFlower(100, 30)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("cyanrose");
 	public int blockIndexInTexture;
 	public final int blockID;
 	protected float blockHardness;

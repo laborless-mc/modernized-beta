@@ -93,7 +93,83 @@ public class RenderBlocks {
 	public boolean renderBlockByRenderType(Block block1, int i2, int i3, int i4) {
 		int i5 = block1.getRenderType();
 		block1.setBlockBoundsBasedOnState(this.blockAccess, i2, i3, i4);
-		return i5 == 0 ? this.renderStandardBlock(block1, i2, i3, i4) : (i5 == 4 ? this.renderBlockFluids(block1, i2, i3, i4) : (i5 == 13 ? this.renderBlockCactus(block1, i2, i3, i4) : (i5 == 1 ? this.renderBlockReed(block1, i2, i3, i4) : (i5 == 6 ? this.renderBlockCrops(block1, i2, i3, i4) : (i5 == 2 ? this.renderBlockTorch(block1, i2, i3, i4) : (i5 == 3 ? this.renderBlockFire(block1, i2, i3, i4) : (i5 == 5 ? this.renderBlockRedstoneWire(block1, i2, i3, i4) : (i5 == 8 ? this.renderBlockLadder(block1, i2, i3, i4) : (i5 == 7 ? this.renderBlockDoor(block1, i2, i3, i4) : (i5 == 9 ? this.renderBlockMinecartTrack((BlockRail)block1, i2, i3, i4) : (i5 == 10 ? this.renderBlockStairs(block1, i2, i3, i4) : (i5 == 11 ? this.renderBlockFence(block1, i2, i3, i4) : (i5 == 12 ? this.renderBlockLever(block1, i2, i3, i4) : (i5 == 14 ? this.renderBlockBed(block1, i2, i3, i4) : (i5 == 15 ? this.renderBlockRepeater(block1, i2, i3, i4) : (i5 == 16 ? this.func_31074_b(block1, i2, i3, i4, false) : (i5 == 17 ? this.func_31080_c(block1, i2, i3, i4, true) : false)))))))))))))))));
+		return i5 == 0 ? this.renderStandardBlock(block1, i2, i3, i4) : (i5 == 4 ? this.renderBlockFluids(block1, i2, i3, i4) : (i5 == 13 ? this.renderBlockCactus(block1, i2, i3, i4) : (i5 == 1 ? this.renderBlockReed(block1, i2, i3, i4) : (i5 == 6 ? this.renderBlockCrops(block1, i2, i3, i4) : (i5 == 2 ? this.renderBlockTorch(block1, i2, i3, i4) : (i5 == 3 ? this.renderBlockFire(block1, i2, i3, i4) : (i5 == 5 ? this.renderBlockRedstoneWire(block1, i2, i3, i4) : (i5 == 8 ? this.renderBlockLadder(block1, i2, i3, i4) : (i5 == 7 ? this.renderBlockDoor(block1, i2, i3, i4) : (i5 == 9 ? this.renderBlockMinecartTrack((BlockRail)block1, i2, i3, i4) : (i5 == 10 ? this.renderBlockStairs(block1, i2, i3, i4) : (i5 == 11 ? this.renderBlockFence(block1, i2, i3, i4) : (i5 == 12 ? this.renderBlockLever(block1, i2, i3, i4) : (i5 == 14 ? this.renderBlockBed(block1, i2, i3, i4) : (i5 == 15 ? this.renderBlockRepeater(block1, i2, i3, i4) : (i5 == 16 ? this.func_31074_b(block1, i2, i3, i4, false) : (i5 == 17 ? this.func_31080_c(block1, i2, i3, i4, true) : (i5 == 20 ? this.renderBlockVine(block1, i2, i3, i4) : false))))))))))))))))));
+	}
+
+	public boolean renderBlockVine(Block block1, int i2, int i3, int i4) {
+		Tessellator tessellator5 = Tessellator.instance;
+		int i6 = block1.getBlockTextureFromSide(0);
+		if(this.overrideBlockTexture >= 0) {
+			i6 = this.overrideBlockTexture;
+		}
+
+		float f7 = 1.0F;
+//		tessellator5.set(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
+		int i8 = block1.colorMultiplier(this.blockAccess, i2, i3, i4);
+		float f9 = (float)(i8 >> 16 & 255) / 255.0F;
+		float f10 = (float)(i8 >> 8 & 255) / 255.0F;
+		float f11 = (float)(i8 & 255) / 255.0F;
+		tessellator5.setColorOpaque_F(f7 * f9, f7 * f10, f7 * f11);
+		i8 = (i6 & 15) << 4;
+		int i21 = i6 & 240;
+		double d22 = (double)((float)i8 / 256.0F);
+		double d12 = (double)(((float)i8 + 15.99F) / 256.0F);
+		double d14 = (double)((float)i21 / 256.0F);
+		double d16 = (double)(((float)i21 + 15.99F) / 256.0F);
+		double d18 = (double)0.05F;
+		int i20 = this.blockAccess.getBlockMetadata(i2, i3, i4);
+		if((i20 & 2) != 0) {
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 1), (double)(i4 + 1), d22, d14);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 0), (double)(i4 + 1), d22, d16);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 0), (double)(i4 + 0), d12, d16);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 1), (double)(i4 + 0), d12, d14);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 1), (double)(i4 + 0), d12, d14);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 0), (double)(i4 + 0), d12, d16);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 0), (double)(i4 + 1), d22, d16);
+			tessellator5.addVertexWithUV((double)i2 + d18, (double)(i3 + 1), (double)(i4 + 1), d22, d14);
+		}
+
+		if((i20 & 8) != 0) {
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 0), (double)(i4 + 1), d12, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 1), (double)(i4 + 1), d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 1), (double)(i4 + 0), d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 0), (double)(i4 + 0), d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 0), (double)(i4 + 0), d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 1), (double)(i4 + 0), d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 1), (double)(i4 + 1), d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1) - d18, (double)(i3 + 0), (double)(i4 + 1), d12, d16);
+		}
+
+		if((i20 & 4) != 0) {
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 0), (double)i4 + d18, d12, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1), (double)i4 + d18, d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1), (double)i4 + d18, d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 0), (double)i4 + d18, d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 0), (double)i4 + d18, d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1), (double)i4 + d18, d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1), (double)i4 + d18, d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 0), (double)i4 + d18, d12, d16);
+		}
+
+		if((i20 & 1) != 0) {
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1), (double)(i4 + 1) - d18, d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 0), (double)(i4 + 1) - d18, d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 0), (double)(i4 + 1) - d18, d12, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1), (double)(i4 + 1) - d18, d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1), (double)(i4 + 1) - d18, d12, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 0), (double)(i4 + 1) - d18, d12, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 0), (double)(i4 + 1) - d18, d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1), (double)(i4 + 1) - d18, d22, d14);
+		}
+
+		if(this.blockAccess.isBlockNormalCube(i2, i3 + 1, i4)) {
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1) - d18, (double)(i4 + 0), d22, d14);
+			tessellator5.addVertexWithUV((double)(i2 + 1), (double)(i3 + 1) - d18, (double)(i4 + 1), d22, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1) - d18, (double)(i4 + 1), d12, d16);
+			tessellator5.addVertexWithUV((double)(i2 + 0), (double)(i3 + 1) - d18, (double)(i4 + 0), d12, d14);
+		}
+
+		return true;
 	}
 
 	private boolean renderBlockBed(Block block1, int i2, int i3, int i4) {

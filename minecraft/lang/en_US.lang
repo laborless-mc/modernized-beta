@@ -336,6 +336,10 @@ tile.netherbrick.name=Nether Brick
 tile.netherbrick.desc=
 tile.stonebrick.name=Stone Brick
 tile.stonebrick.desc=
+tile.vine.name=Vine
+tile.vine.desc=
+tile.cyanrose.name=Cyan Rose
+tile.cyanrose.desc=
 
 item.shovelIron.name=Iron Shovel
 item.shovelIron.desc=

@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class ChunkProviderGenerate implements IChunkProvider {
 	private Random rand;
@@ -140,7 +141,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 								if(i13 <= 0) {
 									b15 = 0;
 									b16 = (byte)Block.stone.blockID;
-								} else if(i17 >= b5 - 4 && i17 <= b5 + 1) {
+								} else if(i17 >= b5 - 4 && i17 <= (biomeGenBase10 == BiomeGenBase.swampland ? b5 - 1 : b5 + 1)) {
 									b15 = biomeGenBase10.topBlock;
 									b16 = biomeGenBase10.fillerBlock;
 									if(z12) {
@@ -173,7 +174,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 							} else if(i14 > 0) {
 								--i14;
 								b3[i18] = b16;
-								if(i14 == 0 && b16 == Block.sand.blockID) {
+								if(i14 == 0 && b16 == (byte)Block.sand.blockID) {
 									i14 = this.rand.nextInt(4);
 									b16 = (byte)Block.sandStone.blockID;
 								}
@@ -422,6 +423,11 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i14 += i13 + 5;
 		}
 
+		// Affects AT LEAST number of trees
+		if(biomeGenBase6 == BiomeGenBase.swampland) {
+			i14 += i13 - 1;
+		}
+
 		if(biomeGenBase6 == BiomeGenBase.seasonalForest) {
 			i14 += i13 + 2;
 		}
@@ -474,7 +480,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i17 = i4 + this.rand.nextInt(16) + 8;
 			i25 = this.rand.nextInt(128);
 			i19 = i5 + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.plantYellow.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+			(new WorldGenFlowers(biomeGenBase6 == BiomeGenBase.swampland ? Block.plantCyan.blockID : Block.plantYellow.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
 		}
 
 		byte b28 = 0;
@@ -528,7 +534,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i17 = i4 + this.rand.nextInt(16) + 8;
 			i25 = this.rand.nextInt(128);
 			i19 = i5 + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.plantRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+			(new WorldGenFlowers(biomeGenBase6 == BiomeGenBase.swampland ? Block.plantCyan.blockID : Block.plantRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
 		}
 
 		if(this.rand.nextInt(4) == 0) {
@@ -543,6 +549,30 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i25 = this.rand.nextInt(128);
 			i19 = i5 + this.rand.nextInt(16) + 8;
 			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+		}
+
+		// Gen mushrooms again for swamp
+		if(biomeGenBase6 == BiomeGenBase.swampland) {
+			if(this.rand.nextInt(2) == 0) {
+				i17 = i4 + this.rand.nextInt(16) + 8;
+				i25 = this.rand.nextInt(128);
+				i19 = i5 + this.rand.nextInt(16) + 8;
+				(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+			}
+
+			if(this.rand.nextInt(2) == 0) {
+				i17 = i4 + this.rand.nextInt(16) + 8;
+				i25 = this.rand.nextInt(128);
+				i19 = i5 + this.rand.nextInt(16) + 8;
+				(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+			}
+
+			if(this.rand.nextInt(2) == 0) {
+				i17 = i4 + this.rand.nextInt(16) + 8;
+				i25 = this.rand.nextInt(128);
+				i19 = i5 + this.rand.nextInt(16) + 8;
+				(new WorldGenFlowers(Block.plantCyan.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);
+			}
 		}
 
 		for(i17 = 0; i17 < 10; ++i17) {

@@ -37,6 +37,11 @@ public class BlockFlower extends Block {
 	}
 
 	public boolean canBlockStay(World world1, int i2, int i3, int i4) {
+		if (world1.getWorldChunkManager().getBiomeGenAt(i2, i3) == BiomeGenBase.swampland) {
+			if(this.blockID == Block.plantRed.blockID || this.blockID == Block.plantYellow.blockID) { return false; }
+		} else {
+			if(this.blockID == Block.plantCyan.blockID) { return false; }
+		}
 		return (world1.getFullBlockLightValue(i2, i3, i4) >= 8 || world1.canBlockSeeTheSky(i2, i3, i4)) && this.canThisPlantGrowOnThisBlockID(world1.getBlockId(i2, i3 - 1, i4));
 	}
 
