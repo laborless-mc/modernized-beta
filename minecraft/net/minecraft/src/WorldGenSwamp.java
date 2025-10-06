@@ -101,6 +101,8 @@ public class WorldGenSwamp extends WorldGenerator {
                         }
                     }
 
+                    this.generateWaterlilies(world1, random2, i3, i4, i5);
+
                     return true;
                 } else {
                     return false;
@@ -123,6 +125,19 @@ public class WorldGenSwamp extends WorldGenerator {
 
             world1.setBlockAndMetadata(i2, i3, i4, Block.vine.blockID, i5);
             --i6;
+        }
+    }
+
+    private void generateWaterlilies(World world, Random random, int x, int y, int z) {
+        WorldGenWaterlily waterLilyGen = new WorldGenWaterlily();
+        for (int i = 0; i < 10; ++i) {
+            int randomX = x + random.nextInt(8) - random.nextInt(8);
+            int randomY = y + random.nextInt(4) - random.nextInt(4);
+            int randomZ = z + random.nextInt(8) - random.nextInt(8);
+
+            //if (world.getBlockId(randomX, randomY, randomZ) == Block.waterStill.blockID) {
+            waterLilyGen.generate(world, random, randomX, randomY, randomZ);
+            //}
         }
     }
 }

@@ -425,7 +425,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		// Affects AT LEAST number of trees
 		if(biomeGenBase6 == BiomeGenBase.swampland) {
-			i14 += i13 - 1;
+			i14 += i13;
 		}
 
 		if(biomeGenBase6 == BiomeGenBase.seasonalForest) {

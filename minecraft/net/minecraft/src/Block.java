@@ -121,6 +121,9 @@ public class Block {
 	public static final Block stoneBrick = (new Block(98, 54, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep).setBlockName("stonebrick");
 	public static final Block vine = (new BlockVine(99)).setHardness(0.2F).setStepSound(soundGrassFootstep).setBlockName("vine");
 	public static final BlockFlower plantCyan = (BlockFlower)(new BlockFlower(100, 30)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("cyanrose");
+	public static final Block mushroomCapBrown = (new BlockMushroomCap(101, Material.wood, 142, 0)).setHardness(0.2F).setStepSound(soundWoodFootstep).setBlockName("mushroom");
+	public static final Block mushroomCapRed = (new BlockMushroomCap(102, Material.wood, 142, 1)).setHardness(0.2F).setStepSound(soundWoodFootstep).setBlockName("mushroom");
+	public static final Block waterlily = (new BlockLilyPad(111, 127)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
 	public int blockIndexInTexture;
 	public final int blockID;
 	protected float blockHardness;
@@ -169,6 +172,8 @@ public class Block {
 
 	protected void initializeBlock() {
 	}
+
+	public int getBlockColor() { return 0; }
 
 	protected Block(int i1, int i2, Material material3) {
 		this(i1, material3);

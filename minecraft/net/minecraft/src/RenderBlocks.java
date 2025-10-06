@@ -93,7 +93,42 @@ public class RenderBlocks {
 	public boolean renderBlockByRenderType(Block block1, int i2, int i3, int i4) {
 		int i5 = block1.getRenderType();
 		block1.setBlockBoundsBasedOnState(this.blockAccess, i2, i3, i4);
-		return i5 == 0 ? this.renderStandardBlock(block1, i2, i3, i4) : (i5 == 4 ? this.renderBlockFluids(block1, i2, i3, i4) : (i5 == 13 ? this.renderBlockCactus(block1, i2, i3, i4) : (i5 == 1 ? this.renderBlockReed(block1, i2, i3, i4) : (i5 == 6 ? this.renderBlockCrops(block1, i2, i3, i4) : (i5 == 2 ? this.renderBlockTorch(block1, i2, i3, i4) : (i5 == 3 ? this.renderBlockFire(block1, i2, i3, i4) : (i5 == 5 ? this.renderBlockRedstoneWire(block1, i2, i3, i4) : (i5 == 8 ? this.renderBlockLadder(block1, i2, i3, i4) : (i5 == 7 ? this.renderBlockDoor(block1, i2, i3, i4) : (i5 == 9 ? this.renderBlockMinecartTrack((BlockRail)block1, i2, i3, i4) : (i5 == 10 ? this.renderBlockStairs(block1, i2, i3, i4) : (i5 == 11 ? this.renderBlockFence(block1, i2, i3, i4) : (i5 == 12 ? this.renderBlockLever(block1, i2, i3, i4) : (i5 == 14 ? this.renderBlockBed(block1, i2, i3, i4) : (i5 == 15 ? this.renderBlockRepeater(block1, i2, i3, i4) : (i5 == 16 ? this.func_31074_b(block1, i2, i3, i4, false) : (i5 == 17 ? this.func_31080_c(block1, i2, i3, i4, true) : (i5 == 20 ? this.renderBlockVine(block1, i2, i3, i4) : false))))))))))))))))));
+		return i5 == 0 ? this.renderStandardBlock(block1, i2, i3, i4) : (i5 == 4 ? this.renderBlockFluids(block1, i2, i3, i4) : (i5 == 13 ? this.renderBlockCactus(block1, i2, i3, i4) : (i5 == 1 ? this.renderBlockReed(block1, i2, i3, i4) : (i5 == 6 ? this.renderBlockCrops(block1, i2, i3, i4) : (i5 == 2 ? this.renderBlockTorch(block1, i2, i3, i4) : (i5 == 3 ? this.renderBlockFire(block1, i2, i3, i4) : (i5 == 5 ? this.renderBlockRedstoneWire(block1, i2, i3, i4) : (i5 == 8 ? this.renderBlockLadder(block1, i2, i3, i4) : (i5 == 7 ? this.renderBlockDoor(block1, i2, i3, i4) : (i5 == 9 ? this.renderBlockMinecartTrack((BlockRail)block1, i2, i3, i4) : (i5 == 10 ? this.renderBlockStairs(block1, i2, i3, i4) : (i5 == 11 ? this.renderBlockFence(block1, i2, i3, i4) : (i5 == 12 ? this.renderBlockLever(block1, i2, i3, i4) : (i5 == 14 ? this.renderBlockBed(block1, i2, i3, i4) : (i5 == 15 ? this.renderBlockRepeater(block1, i2, i3, i4) : (i5 == 16 ? this.func_31074_b(block1, i2, i3, i4, false) : (i5 == 17 ? this.func_31080_c(block1, i2, i3, i4, true) : (i5 == 20 ? this.renderBlockVine(block1, i2, i3, i4) : (i5 == 23 ? this.renderBlockLilyPad(block1, i2, i3, i4) : false)))))))))))))))))));
+	}
+
+	public boolean renderBlockLilyPad(Block block1, int i2, int i3, int i4) {
+		Tessellator tessellator5 = Tessellator.instance;
+		int i6 = block1.blockIndexInTexture;
+		if(this.overrideBlockTexture >= 0) {
+			i6 = this.overrideBlockTexture;
+		}
+
+		int i7 = (i6 & 15) << 4;
+		int i8 = i6 & 240;
+		float f9 = 0.015625F;
+		double d10 = (double)((float)i7 / 256.0F);
+		double d12 = (double)(((float)i7 + 15.99F) / 256.0F);
+		double d14 = (double)((float)i8 / 256.0F);
+		double d16 = (double)(((float)i8 + 15.99F) / 256.0F);
+		long j18 = (long)(i2 * 3129871) ^ (long)i4 * 116129781L ^ (long)i3;
+		j18 = j18 * j18 * 42317861L + j18 * 11L;
+		int i20 = (int)(j18 >> 16 & 3L);
+		//tessellator5.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
+		float f21 = (float)i2 + 0.5F;
+		float f22 = (float)i4 + 0.5F;
+		float f23 = (float)(i20 & 1) * 0.5F * (float)(1 - i20 / 2 % 2 * 2);
+		float f24 = (float)(i20 + 1 & 1) * 0.5F * (float)(1 - (i20 + 1) / 2 % 2 * 2);
+		tessellator5.setColorOpaque_I(block1.getBlockColor());
+		tessellator5.addVertexWithUV((double)(f21 + f23 - f24), (double)((float)i3 + f9), (double)(f22 + f23 + f24), d10, d14);
+		tessellator5.addVertexWithUV((double)(f21 + f23 + f24), (double)((float)i3 + f9), (double)(f22 - f23 + f24), d12, d14);
+		tessellator5.addVertexWithUV((double)(f21 - f23 + f24), (double)((float)i3 + f9), (double)(f22 - f23 - f24), d12, d16);
+		tessellator5.addVertexWithUV((double)(f21 - f23 - f24), (double)((float)i3 + f9), (double)(f22 + f23 - f24), d10, d16);
+		tessellator5.setColorOpaque_I((block1.getBlockColor() & 16711422) >> 1);
+		tessellator5.addVertexWithUV((double)(f21 - f23 - f24), (double)((float)i3 + f9), (double)(f22 + f23 - f24), d10, d16);
+		tessellator5.addVertexWithUV((double)(f21 - f23 + f24), (double)((float)i3 + f9), (double)(f22 - f23 - f24), d12, d16);
+		tessellator5.addVertexWithUV((double)(f21 + f23 + f24), (double)((float)i3 + f9), (double)(f22 - f23 + f24), d12, d14);
+		tessellator5.addVertexWithUV((double)(f21 + f23 - f24), (double)((float)i3 + f9), (double)(f22 + f23 + f24), d10, d14);
+		return true;
 	}
 
 	public boolean renderBlockVine(Block block1, int i2, int i3, int i4) {

@@ -340,6 +340,8 @@ tile.vine.name=Vine
 tile.vine.desc=
 tile.cyanrose.name=Cyan Rose
 tile.cyanrose.desc=
+tile.waterlily.name=Lily Pad
+tile.waterlily.desc=
 
 item.shovelIron.name=Iron Shovel
 item.shovelIron.desc=
