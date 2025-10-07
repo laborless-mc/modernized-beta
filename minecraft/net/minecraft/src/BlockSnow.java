@@ -33,6 +33,11 @@ public class BlockSnow extends Block {
 		return i5 != 0 && Block.blocksList[i5].isOpaqueCube() ? world1.getBlockMaterial(i2, i3 - 1, i4).getIsSolid() : false;
 	}
 
+	public boolean canBlockStay(World world1, int i2, int i3, int i4) {
+		if(world1.getBlockId(i2, i3 - 1, i4) == Block.vine.blockID) { return false; } // Fix annoying snow gen
+		return true;
+	}
+
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
 		this.func_314_h(world1, i2, i3, i4);
 	}

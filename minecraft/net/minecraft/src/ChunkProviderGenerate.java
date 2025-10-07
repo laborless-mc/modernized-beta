@@ -627,7 +627,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				i21 = i19 - (i5 + 8);
 				int i22 = this.worldObj.findTopSolidBlock(i25, i19);
 				double d23 = this.generatedTemperatures[i20 * 16 + i21] - (double)(i22 - 64) / 64.0D * 0.3D;
-				if(d23 < 0.5D && i22 > 0 && i22 < 128 && this.worldObj.isAirBlock(i25, i22, i19) && this.worldObj.getBlockMaterial(i25, i22 - 1, i19).getIsSolid() && this.worldObj.getBlockMaterial(i25, i22 - 1, i19) != Material.ice) {
+				if(d23 < 0.5D && i22 > 0 && i22 < 128 && this.worldObj.isAirBlock(i25, i22, i19) && this.worldObj.getBlockMaterial(i25, i22 - 1, i19).getIsSolid() && this.worldObj.getBlockMaterial(i25, i22 - 1, i19) != Material.ice && Block.snow.canBlockStay(worldObj, i25, i22, i19)) {
 					this.worldObj.setBlockWithNotify(i25, i22, i19, Block.snow.blockID);
 				}
 			}

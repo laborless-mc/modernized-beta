@@ -94,7 +94,7 @@ public class BiomeGenBase {
 
 	public static BiomeGenBase getBiome(float f0, float f1) {
 		f1 *= f0;
-		//if(true) { return jungle; } // for biome testing
+		//if(true) { return hell; } // for biome testing
 
 		// cold and dry = tundra
 		if (f0 < 0.15F) return tundra;
