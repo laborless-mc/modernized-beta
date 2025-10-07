@@ -21,9 +21,9 @@ public class EntitySheep extends EntityAnimal {
 	}
 
 	protected void dropFewItems() {
-		if(!this.getSheared()) {
-			this.entityDropItem(new ItemStack(Block.cloth.blockID, 1, this.getFleeceColor()), 0.0F);
-		}
+//		if(!this.getSheared()) {
+//			this.entityDropItem(new ItemStack(Block.cloth.blockID, 1, this.getFleeceColor()), 0.0F);
+//		}
 
 	}
 

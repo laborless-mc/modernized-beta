@@ -71,6 +71,13 @@ public class EntityChicken extends EntityAnimal {
 		return "mob.chickenhurt";
 	}
 
+	protected void dropFewItems() {
+		if(worldObj.difficultySetting == 0) {
+			super.dropFewItems();
+		}
+
+	}
+
 	protected int getDropItemId() {
 		return Item.feather.shiftedIndex;
 	}
