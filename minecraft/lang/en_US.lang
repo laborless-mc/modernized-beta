@@ -342,6 +342,10 @@ tile.cyanrose.name=Blue Rose
 tile.cyanrose.desc=
 tile.waterlily.name=Lily Pad
 tile.waterlily.desc=
+tile.cactusflower.name=Cactus Flower
+tile.cactusflower.desc=
+tile.cactusflower.name=Dry Grass
+tile.cactusflower.desc=
 
 item.shovelIron.name=Iron Shovel
 item.shovelIron.desc=

@@ -532,6 +532,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			i19 = this.rand.nextInt(128);
 			i20 = i5 + this.rand.nextInt(16) + 8;
 			(new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.worldObj, this.rand, i25, i19, i20);
+			(new WorldGenDeadBush(Block.dryGrass.blockID)).generate(this.worldObj, this.rand, i25, i19, i20);
 		}
 
 		if(this.rand.nextInt(2) == 0) {

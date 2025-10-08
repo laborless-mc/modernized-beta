@@ -123,7 +123,9 @@ public class Block {
 	public static final BlockFlower plantCyan = (BlockFlower)(new BlockFlower(100, 30)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("cyanrose");
 	public static final Block mushroomCapBrown = (new BlockMushroomCap(101, Material.wood, 142, 0)).setHardness(0.2F).setStepSound(soundWoodFootstep).setBlockName("mushroom");
 	public static final Block mushroomCapRed = (new BlockMushroomCap(102, Material.wood, 142, 1)).setHardness(0.2F).setStepSound(soundWoodFootstep).setBlockName("mushroom");
-	public static final Block waterlily = (new BlockLilyPad(111, 127)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
+	public static final Block waterlily = (new BlockLilyPad(103, 127)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
+	public static final BlockFlower cactusFlower = (BlockFlower)(new BlockCactusFlower(104, 111)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("cactusflower");
+	public static final BlockFlower dryGrass = (BlockFlower)(new BlockDryGrass(105, 136)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("drygrass");
 	public int blockIndexInTexture;
 	public final int blockID;
 	protected float blockHardness;

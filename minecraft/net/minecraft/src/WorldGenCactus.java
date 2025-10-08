@@ -14,6 +14,9 @@ public class WorldGenCactus extends WorldGenerator {
 				for(int i11 = 0; i11 < i10; ++i11) {
 					if(Block.cactus.canBlockStay(world1, i7, i8 + i11, i9)) {
 						world1.setBlock(i7, i8 + i11, i9, Block.cactus.blockID);
+						if(random2.nextInt(4) == 0) {
+							world1.setBlock(i7, i8 + i11 + 1, i9, Block.cactusFlower.blockID);
+						}
 					}
 				}
 			}

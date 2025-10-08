@@ -9,6 +9,7 @@ public class RecipesDyes {
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 11), new Object[]{Block.plantYellow});
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 1), new Object[]{Block.plantRed});
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 12), new Object[]{Block.plantCyan});
+		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 9), new Object[]{Block.cactusFlower});
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 3, 15), new Object[]{Item.bone});
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 9), new Object[]{new ItemStack(Item.dyePowder, 1, 1), new ItemStack(Item.dyePowder, 1, 15)});
 		craftingManager1.addShapelessRecipe(new ItemStack(Item.dyePowder, 2, 14), new Object[]{new ItemStack(Item.dyePowder, 1, 1), new ItemStack(Item.dyePowder, 1, 11)});
