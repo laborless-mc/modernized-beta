@@ -9,22 +9,29 @@ public class BlockCactus extends Block {
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
-		if(world1.isAirBlock(i2, i3 + 1, i4)) {
+		if (world1.isAirBlock(i2, i3 + 1, i4)) {
 			int i6;
-			for(i6 = 1; world1.getBlockId(i2, i3 - i6, i4) == this.blockID; ++i6) {
+			for (i6 = 1; world1.getBlockId(i2, i3 - i6, i4) == this.blockID; ++i6) {
 			}
 
-			if(i6 < 3) {
+			if (i6 < 3) {
 				int i7 = world1.getBlockMetadata(i2, i3, i4);
-				if(i7 == 15) {
-					world1.setBlockWithNotify(i2, i3 + 1, i4, this.blockID);
-					world1.setBlockMetadataWithNotify(i2, i3, i4, 0);
+				if (i7 == 15) {
+					if(i6 <= 1 && random5.nextInt(10) == 0) {
+						world1.setBlockWithNotify(i2, i3 + 1, i4, Block.cactusFlower.blockID);
+						world1.setBlockMetadataWithNotify(i2, i3, i4, 0);
+					} else if(i6 == 2 && random5.nextInt(4) == 0) {
+						world1.setBlockWithNotify(i2, i3 + 1, i4, Block.cactusFlower.blockID);
+						world1.setBlockMetadataWithNotify(i2, i3, i4, 0);
+					} else {
+						world1.setBlockWithNotify(i2, i3 + 1, i4, this.blockID);
+						world1.setBlockMetadataWithNotify(i2, i3, i4, 0);
+					}
 				} else {
 					world1.setBlockMetadataWithNotify(i2, i3, i4, i7 + 1);
 				}
 			}
 		}
-
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
