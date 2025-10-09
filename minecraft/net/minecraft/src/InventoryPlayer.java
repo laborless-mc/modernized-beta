@@ -10,7 +10,6 @@ public class InventoryPlayer implements IInventory {
 
 	public InventoryPlayer(EntityPlayer entityPlayer1) {
 		this.player = entityPlayer1;
-		mainInventory[0] = new ItemStack(Item.shears);
 	}
 
 	public ItemStack getCurrentItem() {
