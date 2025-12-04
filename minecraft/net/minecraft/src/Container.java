@@ -47,25 +47,28 @@ public abstract class Container {
 
 	public ItemStack func_27280_a(int i1, int i2, boolean z3, EntityPlayer entityPlayer4) {
 		ItemStack itemStack5 = null;
-		if(i2 == 0 || i2 == 1) {
-			InventoryPlayer inventoryPlayer6 = entityPlayer4.inventory;
-			if(i1 == -999) { // Clicked outside the window => drop item?
-				if(inventoryPlayer6.getItemStack() != null && i1 == -999) {
-					if(i2 == 0) {
-						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack());
-						inventoryPlayer6.setItemStack((ItemStack)null);
-					}
+		if(i2 > 1) {
+			return null;
+		} else {
+			if (i2 == 0 || i2 == 1) {
+				InventoryPlayer inventoryPlayer6 = entityPlayer4.inventory;
+				if (i1 == -999) { // Clicked outside the window => drop item?
+					if (inventoryPlayer6.getItemStack() != null && i1 == -999) {
+						if (i2 == 0) {
+							entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack());
+							inventoryPlayer6.setItemStack((ItemStack) null);
+						}
 
-					if(i2 == 1) {
-						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack().splitStack(1));
-						if(inventoryPlayer6.getItemStack().stackSize == 0) {
-							inventoryPlayer6.setItemStack((ItemStack)null);
+						if (i2 == 1) {
+							entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack().splitStack(1));
+							if (inventoryPlayer6.getItemStack().stackSize == 0) {
+								inventoryPlayer6.setItemStack((ItemStack) null);
+							}
 						}
 					}
-				}
-			} else {
-				int i10;
-				if(z3) { // Holding shift?
+				} else {
+					int i10;
+					if (z3) { // Holding shift?
 //					ItemStack itemStack7 = this.getStackInSlot(i1);
 //					if(itemStack7 != null) {
 //						int i8 = itemStack7.stackSize;
@@ -79,77 +82,84 @@ public abstract class Container {
 //						}
 //					}
 
-					ItemStack itemStack7 = this.getStackInSlot(i1);
-					if(itemStack7 != null) {
-						int i8 = itemStack7.itemID;
-						itemStack5 = itemStack7.copy();
-						Slot slot9 = (Slot)this.getSlot(i1);
-						if(slot9 != null && slot9.getStack() != null && slot9.getStack().itemID == i8) {
-							this.func_27280_a(i1, i2, z3, entityPlayer4);
+						ItemStack itemStack7 = this.getStackInSlot(i1);
+						if (itemStack7 != null) {
+							int i8 = itemStack7.itemID;
+							itemStack5 = itemStack7.copy();
+							Slot slot9 = (Slot) this.getSlot(i1);
+							if (slot9 != null && slot9.getStack() != null && slot9.getStack().itemID == i8) {
+								this.func_27280_a(i1, i2, z3, entityPlayer4);
+							}
 						}
-					}
-				} else {
-					Slot slot12 = (Slot)this.slots.get(i1);
-					if(slot12 != null) {
-						slot12.onSlotChanged();
-						ItemStack itemStack13 = slot12.getStack();
-						ItemStack itemStack14 = inventoryPlayer6.getItemStack();
-						if(itemStack13 != null) {
-							itemStack5 = itemStack13.copy();
+					} else {
+						if(i1 < 0) {
+							return null;
 						}
 
-						if(itemStack13 == null) {
-							if(itemStack14 != null && slot12.isItemValid(itemStack14)) {
-								i10 = i2 == 0 ? itemStack14.stackSize : 1;
-								if(i10 > slot12.getSlotStackLimit()) {
-									i10 = slot12.getSlotStackLimit();
-								}
-
-								slot12.putStack(itemStack14.splitStack(i10));
-								if(itemStack14.stackSize == 0) {
-									inventoryPlayer6.setItemStack((ItemStack)null);
-								}
-							}
-						} else if(itemStack14 == null) {
-							i10 = i2 == 0 ? itemStack13.stackSize : (itemStack13.stackSize + 1) / 2;
-							ItemStack itemStack11 = slot12.decrStackSize(i10);
-							inventoryPlayer6.setItemStack(itemStack11);
-							if(itemStack13.stackSize == 0) {
-								slot12.putStack((ItemStack)null);
+						Slot slot12 = (Slot) this.slots.get(i1);
+						if (slot12 != null) {
+							slot12.onSlotChanged();
+							ItemStack itemStack13 = slot12.getStack();
+							ItemStack itemStack14 = inventoryPlayer6.getItemStack();
+							if (itemStack13 != null) {
+								itemStack5 = itemStack13.copy();
 							}
 
-							slot12.onPickupFromSlot(inventoryPlayer6.getItemStack());
-						} else if(slot12.isItemValid(itemStack14)) {
-							if(itemStack13.itemID == itemStack14.itemID && (!itemStack13.getHasSubtypes() || itemStack13.getItemDamage() == itemStack14.getItemDamage())) {
-								i10 = i2 == 0 ? itemStack14.stackSize : 1;
-								if(i10 > slot12.getSlotStackLimit() - itemStack13.stackSize) {
-									i10 = slot12.getSlotStackLimit() - itemStack13.stackSize;
-								}
+							if (itemStack13 == null) {
+								if (itemStack14 != null && slot12.isItemValid(itemStack14)) {
+									i10 = i2 == 0 ? itemStack14.stackSize : 1;
+									if (i10 > slot12.getSlotStackLimit()) {
+										i10 = slot12.getSlotStackLimit();
+									}
 
-								if(i10 > itemStack14.getMaxStackSize() - itemStack13.stackSize) {
-									i10 = itemStack14.getMaxStackSize() - itemStack13.stackSize;
+									slot12.putStack(itemStack14.splitStack(i10));
+									if (itemStack14.stackSize == 0) {
+										inventoryPlayer6.setItemStack((ItemStack) null);
+									}
 								}
-
-								itemStack14.splitStack(i10);
-								if(itemStack14.stackSize == 0) {
-									inventoryPlayer6.setItemStack((ItemStack)null);
-								}
-
-								itemStack13.stackSize += i10;
-							} else if(itemStack14.stackSize <= slot12.getSlotStackLimit()) {
-								slot12.putStack(itemStack14);
-								inventoryPlayer6.setItemStack(itemStack13);
-							}
-						} else if(itemStack13.itemID == itemStack14.itemID && itemStack14.getMaxStackSize() > 1 && (!itemStack13.getHasSubtypes() || itemStack13.getItemDamage() == itemStack14.getItemDamage())) {
-							i10 = itemStack13.stackSize;
-							if(i10 > 0 && i10 + itemStack14.stackSize <= itemStack14.getMaxStackSize()) {
-								itemStack14.stackSize += i10;
-								itemStack13.splitStack(i10);
-								if(itemStack13.stackSize == 0) {
-									slot12.putStack((ItemStack)null);
+							} else if (itemStack14 == null) {
+								i10 = i2 == 0 ? itemStack13.stackSize : (itemStack13.stackSize + 1) / 2;
+								ItemStack itemStack11 = slot12.decrStackSize(i10);
+								inventoryPlayer6.setItemStack(itemStack11);
+								if (itemStack13.stackSize == 0) {
+									slot12.putStack((ItemStack) null);
 								}
 
 								slot12.onPickupFromSlot(inventoryPlayer6.getItemStack());
+							} else if(slot12.isItemValid(itemStack14)) {
+								if(itemStack13.itemID != itemStack14.itemID || itemStack13.getHasSubtypes() && itemStack13.getItemDamage() != itemStack14.getItemDamage()) {
+									if(itemStack14.stackSize <= slot12.getSlotStackLimit()) {
+										slot12.putStack(itemStack14);
+										inventoryPlayer6.setItemStack(itemStack13);
+									}
+								} else {
+									i10 = i2 == 0 ? itemStack14.stackSize : 1;
+									if(i10 > slot12.getSlotStackLimit() - itemStack13.stackSize) {
+										i10 = slot12.getSlotStackLimit() - itemStack13.stackSize;
+									}
+
+									if(i10 > itemStack14.getMaxStackSize() - itemStack13.stackSize) {
+										i10 = itemStack14.getMaxStackSize() - itemStack13.stackSize;
+									}
+
+									itemStack14.splitStack(i10);
+									if(itemStack14.stackSize == 0) {
+										inventoryPlayer6.setItemStack((ItemStack)null);
+									}
+
+									itemStack13.stackSize += i10;
+								}
+							} else if (itemStack13.itemID == itemStack14.itemID && itemStack14.getMaxStackSize() > 1 && (!itemStack13.getHasSubtypes() || itemStack13.getItemDamage() == itemStack14.getItemDamage())) {
+								i10 = itemStack13.stackSize;
+								if (i10 > 0 && i10 + itemStack14.stackSize <= itemStack14.getMaxStackSize()) {
+									itemStack14.stackSize += i10;
+									itemStack13.splitStack(i10);
+									if (itemStack13.stackSize == 0) {
+										slot12.putStack((ItemStack) null);
+									}
+
+									slot12.onPickupFromSlot(inventoryPlayer6.getItemStack());
+								}
 							}
 						}
 					}
@@ -200,7 +210,8 @@ public abstract class Container {
 
 	public abstract boolean isUsableByPlayer(EntityPlayer entityPlayer1);
 
-	protected void func_28125_a(ItemStack itemStack1, int i2, int i3, boolean z4) {
+	protected boolean func_28125_a(ItemStack itemStack1, int i2, int i3, boolean z4) {
+		boolean z5 = false;
 		int i5 = i2;
 		if(z4) {
 			i5 = i3 - 1;
@@ -218,10 +229,12 @@ public abstract class Container {
 						itemStack1.stackSize = 0;
 						itemStack7.stackSize = i8;
 						slot6.onSlotChanged();
+						z5 = true;
 					} else if(itemStack7.stackSize < itemStack1.getMaxStackSize()) {
 						itemStack1.stackSize -= itemStack1.getMaxStackSize() - itemStack7.stackSize;
 						itemStack7.stackSize = itemStack1.getMaxStackSize();
 						slot6.onSlotChanged();
+						z5 = true;
 					}
 				}
 
@@ -247,6 +260,7 @@ public abstract class Container {
 					slot6.putStack(itemStack1.copy());
 					slot6.onSlotChanged();
 					itemStack1.stackSize = 0;
+					z5 = true;
 					break;
 				}
 
@@ -258,5 +272,6 @@ public abstract class Container {
 			}
 		}
 
+		return z5;
 	}
 }

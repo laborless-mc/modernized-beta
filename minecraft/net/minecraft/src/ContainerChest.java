@@ -40,9 +40,11 @@ public class ContainerChest extends Container {
 			ItemStack itemStack4 = slot3.getStack();
 			itemStack2 = itemStack4.copy();
 			if(i1 < this.field_27282_b * 9) {
-				this.func_28125_a(itemStack4, this.field_27282_b * 9, this.slots.size(), true);
-			} else {
-				this.func_28125_a(itemStack4, 0, this.field_27282_b * 9, false);
+				if(!this.func_28125_a(itemStack4, this.field_27282_b * 9, this.slots.size(), true)) {
+					return null;
+				}
+			} else if(!this.func_28125_a(itemStack4, 0, this.field_27282_b * 9, false)) {
+				return null;
 			}
 
 			if(itemStack4.stackSize == 0) {

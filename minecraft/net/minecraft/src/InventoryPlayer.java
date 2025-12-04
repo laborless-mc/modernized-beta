@@ -10,6 +10,13 @@ public class InventoryPlayer implements IInventory {
 
 	public InventoryPlayer(EntityPlayer entityPlayer1) {
 		this.player = entityPlayer1;
+		this.mainInventory[0] = new ItemStack(Block.wood, 64);
+		this.mainInventory[1] = new ItemStack(Block.wood, 64);
+		this.mainInventory[2] = new ItemStack(Block.wood, 64);
+		this.mainInventory[3] = new ItemStack(Block.wood, 64);
+		this.mainInventory[4] = new ItemStack(Block.wood, 64);
+		this.mainInventory[5] = new ItemStack(Block.wood, 64);
+		this.mainInventory[6] = new ItemStack(Block.wood, 64);
 	}
 
 	public ItemStack getCurrentItem() {
